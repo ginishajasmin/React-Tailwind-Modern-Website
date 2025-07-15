@@ -61,7 +61,9 @@ const Navbar = () => {
           <div className='container mx-auto px-4 space-y-3'>
             {
               navLinks.map((link, index) => (
-                <a onClick={() => setActiveLink(link.href)} key={index} href={link.href} className={`block text-sm font-medium py-2 ${activeLink === link.href ? 'text-blue-600' : 'text-gray-600 hover:text-gray-900'}`}>{link.label}</a>
+                <a 
+                onClick={() => {setActiveLink(link.href); setIsMenuOpen(false)}}
+                key={index} href={link.href} className={`block text-sm font-medium py-2 ${activeLink === link.href ? 'text-blue-600' : 'text-gray-600 hover:text-gray-900'}`}>{link.label}</a>
               ))
             }
 
