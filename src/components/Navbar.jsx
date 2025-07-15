@@ -31,8 +31,8 @@ const Navbar = () => {
         </div>
 
         {/* mobile menu button */}
-        <button>
-          {isMenuOpen ? <HiX/> : <HiMenu/>}
+        <button onClick={() => setIsMenuOpen(!isMenuOpen)} className='md:hidden p-2'>
+          {isMenuOpen ? <HiX className='size-6' /> : <HiMenu className='size-6' />}
         </button>
 
         {/* desktop nav items */}
@@ -54,6 +54,25 @@ const Navbar = () => {
         </div>
 
       </div>
+
+      {/* mobile nav items */}
+      {isMenuOpen && (
+        <div className='md:hidden bg-white border-t border-gray-100 py-4'>
+          <div className='container mx-auto px-4 space-y-3'>
+            {
+              navLinks.map((link, index) => (
+                <a onClick={() => setActiveLink(link.href)} key={index} href={link.href} className={`block text-sm font-medium py-2 ${activeLink === link.href ? 'text-blue-600' : 'text-gray-600 hover:text-gray-900'}`}>{link.label}</a>
+              ))
+            }
+
+            <button className='w-full bg-blue-600 text-white px-6 py-2.5 rounded-lg hover:bg-blue-700 text-sm font-medium transition-all hover:shadow-lg hover:shadow-blue-100'>
+              <a href="#newsletter">Get in touch</a>
+            </button>
+
+          </div>
+        </div>
+      )}
+
     </nav>
   )
 }
